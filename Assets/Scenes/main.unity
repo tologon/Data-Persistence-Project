@@ -503,6 +503,7 @@ MonoBehaviour:
   Ball: {fileID: 177912862}
   ScoreText: {fileID: 188020406}
   GameOverText: {fileID: 474497238}
+  _highScoreText: {fileID: 2078529056}
 --- !u!1 &455529321
 GameObject:
   m_ObjectHideFlags: 0
@@ -1298,7 +1299,7 @@ GameObject:
   - component: {fileID: 2078529057}
   - component: {fileID: 2078529056}
   m_Layer: 5
-  m_Name: BestScore
+  m_Name: HighScore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

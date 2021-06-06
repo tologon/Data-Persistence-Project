@@ -19,13 +19,20 @@ public class MainManager : MonoBehaviour
     private bool m_GameOver = false;
 
     private string _currentUsername;
+    [SerializeField] private Text _highScoreText;
+    private GameManager.HighScore _highScore;
+    private GameManager _gameManager;
 
-    
+
     // Start is called before the first frame update
     void Start()
     {
-        _currentUsername = FindObjectOfType<GameManager>().GetUsername();
+        _gameManager = FindObjectOfType<GameManager>();
+        _currentUsername = _gameManager.GetUsername();
         AddPoint(0);
+
+        _highScore = _gameManager.GetHighScore();
+        SetHighScore();
 
         const float step = 0.6f;
         int perLine = Mathf.FloorToInt(4.0f / step);
@@ -78,5 +85,31 @@ public class MainManager : MonoBehaviour
     {
         m_GameOver = true;
         GameOverText.SetActive(true);
+
+        if (m_Points > _highScore.Value)
+        {
+            OverrideHighScore();
+        }
+    }
+
+    private void SetHighScore()
+    {
+        if (_highScore != null && !string.IsNullOrEmpty(_highScore.User))
+        {
+            _highScoreText.text = $"Best Score : {_highScore.User} : {_highScore.Value}";
+        }
+        else
+        {
+            _highScoreText.text = string.Empty;
+        }
+    }
+
+    private void OverrideHighScore()
+    {
+        _highScore.User = _currentUsername;
+        _highScore.Value = m_Points;
+
+        _gameManager.SetHighScore(_highScore);
+        _gameManager.SaveHighScore();
     }
 }

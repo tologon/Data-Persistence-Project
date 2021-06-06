@@ -1328,3 +1328,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _inputField: {fileID: 1323382646}
   _currentUsername: 
+  _highScoreKey: highScore
